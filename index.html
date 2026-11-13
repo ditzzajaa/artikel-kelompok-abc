@@ -13,9 +13,7 @@
     --primary: #2563eb;
     --dark: #0f172a;
     --blue: #1e40af;
-    --light: #eff6ff;
     --text: #334155;
-    --white: #ffffff;
     --bg: #f8fafc;
     --card: #ffffff;
     --section: #f1f5f9;
@@ -29,7 +27,6 @@ body.dark-mode {
     --card: #172033;
     --section: #111b2e;
     --border: #26354d;
-    --light: #172b4d;
 }
 
 * {
@@ -47,7 +44,6 @@ body {
     transition: background .35s, color .35s;
 }
 
-/* FADE THEME */
 body.theme-changing {
     opacity: 0;
     transition: opacity .18s ease;
@@ -93,7 +89,7 @@ nav a:hover {
     color: #60a5fa;
 }
 
-/* DARK MODE SWITCH */
+/* SAKLAR TEMA */
 .theme-switch {
     width: 68px;
     height: 34px;
@@ -202,7 +198,93 @@ section {
     color: #3b82f6;
 }
 
-/* CARDS */
+/* ANGGOTA KELOMPOK */
+.group-section {
+    background: var(--section);
+}
+
+.group-card {
+    max-width: 700px;
+    margin: auto;
+    background: var(--card);
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 25px #00000008;
+}
+
+.group-card h2 {
+    color: #3b82f6;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.group-name {
+    text-align: center;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 22px;
+}
+
+.group-label {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.member-list {
+    list-style: none;
+    counter-reset: member;
+}
+
+.member-list li {
+    counter-increment: member;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    margin-bottom: 9px;
+    border-radius: 10px;
+    background: var(--section);
+    font-size: 14px;
+}
+
+.member-list li::before {
+    content: counter(member, decimal-leading-zero);
+    color: #2563eb;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+/* PENGERTIAN */
+.definition {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 35px;
+}
+
+.definition img {
+    width: 100%;
+    border-radius: 18px;
+    object-fit: cover;
+}
+
+.definition-text h2 {
+    color: var(--dark);
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* GRID DAN CARD */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
 .card {
     background: var(--card);
     padding: 25px;
@@ -238,34 +320,7 @@ section {
     margin-bottom: 15px;
 }
 
-/* PENGERTIAN */
-.definition {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 35px;
-}
-
-.definition img {
-    width: 100%;
-    border-radius: 18px;
-    object-fit: cover;
-}
-
-.definition-text h2 {
-    color: var(--dark);
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-/* JENIS */
+/* JENIS BULLYING */
 .types {
     background: var(--section);
 }
@@ -357,7 +412,7 @@ section {
     color: #dbeafe;
 }
 
-/* QUOTE */
+/* PESAN AJAKAN */
 .quote {
     background: #dbeafe;
     color: #1e40af;
@@ -374,7 +429,7 @@ section {
     font-size: 15px;
 }
 
-/* SUPPORT DEVELOPER */
+/* DUKUNG DEVELOPER */
 .support-section {
     text-align: center;
     padding: 55px 6%;
@@ -407,7 +462,26 @@ section {
 
 .support-btn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px #2563eb55;
+}
+
+/* KONTAK DEVELOPER */
+.contact-section {
+    text-align: center;
+    padding: 0 6% 40px;
+    background: var(--bg);
+}
+
+.contact-link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.contact-link:hover {
+    color: #60a5fa;
+    text-decoration: underline;
 }
 
 /* FOOTER */
@@ -423,7 +497,7 @@ footer strong {
     color: #60a5fa;
 }
 
-/* ANIMATION */
+/* ANIMASI SCROLL */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -490,6 +564,10 @@ footer strong {
     .section-title h2 {
         font-size: 25px;
     }
+
+    .group-card {
+        padding: 22px 16px;
+    }
 }
 </style>
 </head>
@@ -508,7 +586,6 @@ footer strong {
             <a href="#solusi">Solusi</a>
         </div>
 
-        <!-- SAKLAR TEMA -->
         <button class="theme-switch"
                 id="themeSwitch"
                 aria-label="Ganti mode terang atau gelap"
@@ -529,9 +606,28 @@ footer strong {
             dan diterima di lingkungan sekolah.
             Mari ciptakan sekolah tanpa perundungan!
         </p>
-        <a href="#pengertian" class="hero-btn">Pelajari Sekarang ↓</a>
+        <a href="#kelompok" class="hero-btn">Pelajari Sekarang ↓</a>
     </div>
 </header>
+
+<!-- ANGGOTA KELOMPOK -->
+<section id="kelompok" class="group-section">
+    <div class="group-card reveal">
+        <h2>ANGGOTA KELOMPOK</h2>
+        <p class="group-name">Kelompok ABC</p>
+
+        <p class="group-label">Daftar Anggota:</p>
+
+        <ol class="member-list">
+            <li>Dzaky Faisal Makhrus</li>
+            <li>Radit Setya Putra</li>
+            <li>Shinta Nur Kristia Lilita</li>
+            <li>Keylla Natia Kusuma Indah</li>
+            <li>Mutiara Larasati</li>
+            <li>Hilda Nurul Aeni</li>
+        </ol>
+    </div>
+</section>
 
 <!-- PENGERTIAN -->
 <section id="pengertian">
@@ -761,6 +857,16 @@ footer strong {
     </a>
 </section>
 
+<!-- KONTAK DEVELOPER (LINK TEKS BIASA) -->
+<div class="contact-section">
+    <a href="https://kontak-radit.vercel.app"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="contact-link">
+        Kontak Developer
+    </a>
+</div>
+
 <!-- FOOTER -->
 <footer>
     <p><strong>STOP BULLYING.</strong></p>
@@ -773,7 +879,7 @@ footer strong {
 // MODE GELAP DAN TERANG
 const themeSwitch = document.getElementById('themeSwitch');
 
-let savedTheme = localStorage.getItem('bullying-theme');
+const savedTheme = localStorage.getItem('bullying-theme');
 
 if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
@@ -802,7 +908,6 @@ themeSwitch.addEventListener('click', () => {
         );
 
         updateSwitch();
-
         document.body.classList.remove('theme-changing');
     }, 180);
 });
