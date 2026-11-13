@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -168,6 +169,15 @@
             color: var(--muted);
             font-size: 16px;
             animation: fadeUp 1s 0.3s both;
+        }
+
+        /* HERO BUTTONS */
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
         }
 
         .hero-btn {
@@ -723,6 +733,15 @@
                 font-size: 14px;
             }
 
+            .hero-buttons {
+                gap: 10px;
+            }
+
+            .hero-btn {
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+
             .solution-item {
                 padding: 17px;
                 gap: 12px;
@@ -808,9 +827,18 @@
                 Mari ciptakan sekolah tanpa perundungan!
             </p>
 
-            <a href="#pengertian" class="hero-btn">
-                Pelajari Sekarang ↓
-            </a>
+            <div class="hero-buttons">
+                <a href="#pengertian" class="hero-btn">
+                    Pelajari Sekarang ↓
+                </a>
+
+                <a href="https://kuis-anti-bullying.vercel.app"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="hero-btn">
+                    Kuis Anti-Bullying
+                </a>
+            </div>
         </div>
     </header>
 
