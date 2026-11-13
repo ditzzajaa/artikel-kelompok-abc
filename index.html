@@ -16,6 +16,20 @@
     --light: #eff6ff;
     --text: #334155;
     --white: #ffffff;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --section: #f1f5f9;
+    --border: #e2e8f0;
+}
+
+body.dark-mode {
+    --dark: #f1f5f9;
+    --text: #cbd5e1;
+    --bg: #0b1220;
+    --card: #172033;
+    --section: #111b2e;
+    --border: #26354d;
+    --light: #172b4d;
 }
 
 * {
@@ -27,22 +41,29 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f8fafc;
+    background: var(--bg);
     color: var(--text);
     line-height: 1.8;
+    transition: background .35s, color .35s;
+}
+
+/* FADE THEME */
+body.theme-changing {
+    opacity: 0;
+    transition: opacity .18s ease;
 }
 
 /* NAVBAR */
 nav {
-    background: rgba(15, 23, 42, .96);
-    padding: 15px 8%;
+    background: #0f172a;
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
+    gap: 15px;
 }
 
 .logo {
@@ -55,16 +76,58 @@ nav {
     color: #60a5fa;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 nav a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 15px;
     font-size: 13px;
-    transition: .3s;
 }
 
 nav a:hover {
     color: #60a5fa;
+}
+
+/* DARK MODE SWITCH */
+.theme-switch {
+    width: 68px;
+    height: 34px;
+    border-radius: 30px;
+    background: #334155;
+    border: 2px solid #64748b;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px;
+    flex-shrink: 0;
+}
+
+.theme-switch .sun,
+.theme-switch .moon {
+    font-size: 15px;
+    z-index: 1;
+}
+
+.switch-circle {
+    position: absolute;
+    left: 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: white;
+    transition: transform .3s ease;
+    box-shadow: 0 2px 6px #0004;
+}
+
+body.dark-mode .switch-circle {
+    transform: translateX(32px);
 }
 
 /* HERO */
@@ -112,10 +175,9 @@ nav a:hover {
 
 .hero-btn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px #0004;
 }
 
-/* GENERAL SECTION */
+/* SECTION */
 section {
     padding: 75px 8%;
 }
@@ -133,36 +195,47 @@ section {
 
 .section-title p {
     font-size: 14px;
-    color: #64748b;
+    color: var(--text);
 }
 
 .highlight {
-    color: var(--primary);
+    color: #3b82f6;
 }
 
 /* CARDS */
 .card {
-    background: white;
+    background: var(--card);
     padding: 25px;
     border-radius: 16px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 5px 20px #0f172a08;
+    border: 1px solid var(--border);
+    box-shadow: 0 5px 20px #00000008;
     transition: .3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px #2563eb18;
 }
 
 .card h3 {
-    color: #1e40af;
+    color: #3b82f6;
     margin-bottom: 10px;
     font-size: 18px;
 }
 
 .card p {
     font-size: 14px;
+}
+
+.number {
+    width: 40px;
+    height: 40px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    margin-bottom: 15px;
 }
 
 /* PENGERTIAN */
@@ -177,7 +250,6 @@ section {
     width: 100%;
     border-radius: 18px;
     object-fit: cover;
-    box-shadow: 0 10px 30px #0002;
 }
 
 .definition-text h2 {
@@ -193,43 +265,31 @@ section {
     gap: 20px;
 }
 
-.number {
-    width: 40px;
-    height: 40px;
-    background: #dbeafe;
-    color: #1d4ed8;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
-    font-weight: 800;
-    margin-bottom: 15px;
-}
-
-/* JENIS BULLYING */
+/* JENIS */
 .types {
-    background: #eff6ff;
+    background: var(--section);
 }
 
 .type-card {
-    background: white;
+    background: var(--card);
     padding: 22px;
     border-radius: 15px;
     border-left: 5px solid #2563eb;
 }
 
 .type-card h3 {
-    color: #1e40af;
+    color: #3b82f6;
     margin-bottom: 8px;
     font-size: 17px;
 }
 
-.type-card p {
+.type-card p,
+.type-card ul {
     font-size: 13px;
 }
 
 .type-card ul {
     padding-left: 20px;
-    font-size: 13px;
     margin-top: 8px;
 }
 
@@ -245,10 +305,10 @@ section {
     display: flex;
     align-items: flex-start;
     gap: 18px;
-    background: white;
+    background: var(--card);
     padding: 20px;
     border-radius: 14px;
-    box-shadow: 0 4px 15px #00000008;
+    border: 1px solid var(--border);
 }
 
 .check {
@@ -264,7 +324,7 @@ section {
 
 .solution-item h3 {
     font-size: 16px;
-    color: #1e40af;
+    color: #3b82f6;
 }
 
 .solution-item p {
@@ -289,7 +349,6 @@ section {
     max-width: 650px;
     margin: 30px auto;
     border-radius: 16px;
-    box-shadow: 0 10px 30px #0005;
 }
 
 .poster p {
@@ -301,18 +360,54 @@ section {
 /* QUOTE */
 .quote {
     background: #dbeafe;
+    color: #1e40af;
     text-align: center;
     padding: 45px 8%;
 }
 
 .quote h2 {
-    color: #1e40af;
     font-size: 25px;
 }
 
 .quote p {
     margin-top: 10px;
     font-size: 15px;
+}
+
+/* SUPPORT DEVELOPER */
+.support-section {
+    text-align: center;
+    padding: 55px 6%;
+    background: var(--bg);
+}
+
+.support-section h2 {
+    color: var(--dark);
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.support-section p {
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.support-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    text-decoration: none;
+    padding: 13px 30px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 6px 18px #2563eb40;
+    transition: .3s;
+}
+
+.support-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px #2563eb55;
 }
 
 /* FOOTER */
@@ -343,11 +438,11 @@ footer strong {
 /* RESPONSIVE */
 @media(max-width: 800px) {
     nav {
-        padding: 13px 5%;
+        padding: 13px 4%;
     }
 
     nav a {
-        margin-left: 10px;
+        margin-left: 8px;
         font-size: 11px;
     }
 
@@ -362,19 +457,22 @@ footer strong {
 
 @media(max-width: 550px) {
     nav {
-        flex-direction: column;
-        gap: 8px;
+        flex-wrap: wrap;
     }
 
-    nav div:last-child {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px;
+    .nav-right {
+        gap: 10px;
     }
 
     nav a {
         margin: 0;
+        font-size: 10px;
+    }
+
+    nav .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     section {
@@ -401,11 +499,24 @@ footer strong {
 <!-- NAVBAR -->
 <nav>
     <div class="logo">STOP<span>BULLYING.</span></div>
-    <div>
-        <a href="#pengertian">Pengertian</a>
-        <a href="#dampak">Dampak</a>
-        <a href="#jenis">Jenis</a>
-        <a href="#solusi">Solusi</a>
+
+    <div class="nav-right">
+        <div class="links">
+            <a href="#pengertian">Pengertian</a>
+            <a href="#dampak">Dampak</a>
+            <a href="#jenis">Jenis</a>
+            <a href="#solusi">Solusi</a>
+        </div>
+
+        <!-- SAKLAR TEMA -->
+        <button class="theme-switch"
+                id="themeSwitch"
+                aria-label="Ganti mode terang atau gelap"
+                aria-pressed="false">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+            <span class="switch-circle"></span>
+        </button>
     </div>
 </nav>
 
@@ -427,7 +538,7 @@ footer strong {
     <div class="definition reveal">
         <div>
             <img src="image1.jpg"
-                 alt="Ilustrasi seorang siswa laki-laki mengalami bullying oleh teman sekelasnya">
+                 alt="Ilustrasi siswa mengalami bullying">
         </div>
 
         <div class="definition-text">
@@ -449,7 +560,7 @@ footer strong {
 </section>
 
 <!-- DAMPAK -->
-<section id="dampak" style="background:#f1f5f9;">
+<section id="dampak" style="background:var(--section);">
     <div class="section-title reveal">
         <h2>Dampak <span class="highlight">Bullying</span></h2>
         <p>Perundungan dapat membawa berbagai dampak negatif.</p>
@@ -498,27 +609,27 @@ footer strong {
     <div class="grid">
         <div class="type-card reveal">
             <h3>01. Bullying Fisik</h3>
-            <p>Perundungan melalui tindakan yang melibatkan fisik.</p>
+            <p>Perundungan melalui tindakan fisik.</p>
             <ul>
                 <li>Memukul atau menendang.</li>
                 <li>Mendorong teman.</li>
-                <li>Merusak atau mengambil barang.</li>
+                <li>Merusak barang.</li>
             </ul>
         </div>
 
         <div class="type-card reveal">
             <h3>02. Bullying Verbal</h3>
-            <p>Perundungan melalui perkataan yang menyakiti.</p>
+            <p>Perundungan melalui perkataan.</p>
             <ul>
                 <li>Mengejek dan menghina.</li>
                 <li>Memberikan julukan buruk.</li>
-                <li>Mengancam atau mempermalukan.</li>
+                <li>Mengancam teman.</li>
             </ul>
         </div>
 
         <div class="type-card reveal">
             <h3>03. Bullying Sosial</h3>
-            <p>Perundungan yang merusak hubungan sosial seseorang.</p>
+            <p>Perundungan yang merusak hubungan sosial.</p>
             <ul>
                 <li>Mengucilkan teman.</li>
                 <li>Menyebarkan gosip.</li>
@@ -528,9 +639,9 @@ footer strong {
 
         <div class="type-card reveal">
             <h3>04. Cyberbullying</h3>
-            <p>Perundungan yang dilakukan melalui teknologi digital.</p>
+            <p>Perundungan melalui teknologi digital.</p>
             <ul>
-                <li>Menghina melalui media sosial.</li>
+                <li>Menghina di media sosial.</li>
                 <li>Menyebarkan foto tanpa izin.</li>
                 <li>Mengirim pesan ancaman.</li>
             </ul>
@@ -538,7 +649,7 @@ footer strong {
 
         <div class="type-card reveal">
             <h3>05. Bullying Seksual</h3>
-            <p>Perilaku atau tindakan bernuansa seksual yang tidak diinginkan.</p>
+            <p>Perilaku bernuansa seksual yang tidak diinginkan.</p>
             <ul>
                 <li>Melontarkan komentar seksual.</li>
                 <li>Membuat lelucon seksual yang merendahkan.</li>
@@ -552,16 +663,15 @@ footer strong {
 <section id="solusi">
     <div class="section-title reveal">
         <h2>Cara Penyelesaian <span class="highlight">Bullying</span></h2>
-        <p>Berikut langkah yang dapat dilakukan untuk mengatasi bullying.</p>
+        <p>Langkah mengatasi tindakan perundungan.</p>
     </div>
 
     <div class="solution-list">
-
         <div class="solution-item reveal">
             <div class="check">1</div>
             <div>
                 <h3>Laporkan Kejadian</h3>
-                <p>Laporkan tindakan bullying kepada guru BK, wali kelas, atau pihak sekolah.</p>
+                <p>Laporkan kepada guru BK, wali kelas, atau pihak sekolah.</p>
             </div>
         </div>
 
@@ -569,7 +679,7 @@ footer strong {
             <div class="check">2</div>
             <div>
                 <h3>Dukung Korban</h3>
-                <p>Berikan perhatian, bantuan, dan dukungan agar korban tidak merasa sendirian.</p>
+                <p>Berikan perhatian dan dukungan kepada korban.</p>
             </div>
         </div>
 
@@ -577,7 +687,7 @@ footer strong {
             <div class="check">3</div>
             <div>
                 <h3>Tegur dengan Aman</h3>
-                <p>Jangan ikut melakukan bullying. Tegur pelaku jika situasinya aman dan mintalah bantuan orang dewasa.</p>
+                <p>Tegur pelaku jika situasinya aman dan mintalah bantuan orang dewasa.</p>
             </div>
         </div>
 
@@ -585,7 +695,7 @@ footer strong {
             <div class="check">4</div>
             <div>
                 <h3>Pembinaan dan Sanksi</h3>
-                <p>Berikan pembinaan dan sanksi yang sesuai kepada pelaku berdasarkan aturan sekolah.</p>
+                <p>Berikan pembinaan dan sanksi sesuai aturan sekolah.</p>
             </div>
         </div>
 
@@ -593,7 +703,7 @@ footer strong {
             <div class="check">5</div>
             <div>
                 <h3>Sosialisasi Bahaya Bullying</h3>
-                <p>Adakan edukasi dan kampanye untuk meningkatkan kesadaran siswa.</p>
+                <p>Adakan edukasi untuk meningkatkan kesadaran siswa.</p>
             </div>
         </div>
 
@@ -601,21 +711,19 @@ footer strong {
             <div class="check">6</div>
             <div>
                 <h3>Ciptakan Sekolah yang Aman</h3>
-                <p>Bangun lingkungan sekolah yang nyaman, ramah, dan saling menghargai.</p>
+                <p>Bangun lingkungan sekolah yang nyaman dan saling menghargai.</p>
             </div>
         </div>
-
     </div>
 </section>
 
-<!-- POSTER AJAKAN -->
+<!-- POSTER -->
 <section class="poster">
     <div class="reveal">
         <h2>STOP BULLYING!</h2>
         <p>Jadilah teman yang baik, bukan alasan seseorang merasa takut datang ke sekolah.</p>
 
-        <img src="image2.jpg"
-             alt="Poster kampanye Stop Bullying">
+        <img src="image2.jpg" alt="Poster kampanye Stop Bullying">
 
         <h2>Berani Peduli, Berani Melindungi!</h2>
         <p>
@@ -626,16 +734,32 @@ footer strong {
     </div>
 </section>
 
-<!-- PESAN -->
+<!-- PESAN AJAKAN -->
 <div class="quote">
     <h2>"Berbeda Bukan Berarti Harus Dibeda-bedakan."</h2>
     <p>
         Hargai setiap perbedaan, jaga persahabatan,
         dan sebarkan kebaikan.
-        Karena sekolah yang hebat adalah sekolah
-        yang bebas dari bullying!
+        Mari ciptakan sekolah bebas bullying!
     </p>
 </div>
+
+<!-- DUKUNG DEVELOPER -->
+<section class="support-section">
+    <h2>Dukung Pengembangan Website</h2>
+    <p>
+        Terima kasih sudah membaca edukasi ini.
+        Dukung developer agar terus berkarya dan membuat
+        hal-hal bermanfaat.
+    </p>
+
+    <a href="https://dukung-gua.vercel.app"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="support-btn">
+        ♥ Dukung Developer
+    </a>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -646,7 +770,44 @@ footer strong {
 </footer>
 
 <script>
-// ANIMASI SAAT SCROLL
+// MODE GELAP DAN TERANG
+const themeSwitch = document.getElementById('themeSwitch');
+
+let savedTheme = localStorage.getItem('bullying-theme');
+
+if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+}
+
+function updateSwitch() {
+    const isDark = document.body.classList.contains('dark-mode');
+    themeSwitch.setAttribute('aria-pressed', isDark);
+}
+
+updateSwitch();
+
+themeSwitch.addEventListener('click', () => {
+    if (document.body.classList.contains('theme-changing')) return;
+
+    document.body.classList.add('theme-changing');
+
+    setTimeout(() => {
+        document.body.classList.toggle('dark-mode');
+
+        const isDark = document.body.classList.contains('dark-mode');
+
+        localStorage.setItem(
+            'bullying-theme',
+            isDark ? 'dark' : 'light'
+        );
+
+        updateSwitch();
+
+        document.body.classList.remove('theme-changing');
+    }, 180);
+});
+
+// ANIMASI SCROLL
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -665,4 +826,3 @@ document.querySelectorAll('.reveal').forEach(element => {
 
 </body>
 </html>
-  
