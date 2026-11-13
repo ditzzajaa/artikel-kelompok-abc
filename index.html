@@ -1,259 +1,1011 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Website Maintenance</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f7ff">
+    <title>Edukasi Stop Bullying</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-body {
-    min-height: 100vh;
-    background: #080808;
-    color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 20px;
-}
+    <style>
+        :root {
+            --bg: #f4f7ff;
+            --surface: #ffffff;
+            --surface-2: #eaf0ff;
+            --text: #17213b;
+            --muted: #64718b;
+            --primary: #2878ff;
+            --primary-dark: #155bd1;
+            --border: #e1e8f5;
+            --shadow: 0 12px 35px rgba(30, 65, 130, 0.09);
+            --nav-bg: rgba(255, 255, 255, 0.92);
+            --nav-text: #17213b;
+        }
 
-/* Cahaya merah */
-body::before {
-    content: "";
-    position: fixed;
-    width: 350px;
-    height: 350px;
-    background: #ff0000;
-    filter: blur(150px);
-    opacity: 0.18;
-    border-radius: 50%;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: glow 4s infinite alternate;
-}
+        body.dark-mode {
+            --bg: #0b1220;
+            --surface: #131e31;
+            --surface-2: #1b2a43;
+            --text: #edf3ff;
+            --muted: #a8b5cc;
+            --primary: #5795ff;
+            --primary-dark: #3478ed;
+            --border: #263750;
+            --shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+            --nav-bg: rgba(19, 30, 49, 0.94);
+            --nav-text: #edf3ff;
+        }
 
-@keyframes glow {
-    from { opacity: 0.12; transform: translateX(-50%) scale(0.8); }
-    to { opacity: 0.3; transform: translateX(-50%) scale(1.2); }
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-.container {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 550px;
-    text-align: center;
-    padding: 35px 25px;
-    background: rgba(20, 20, 20, 0.8);
-    border: 1px solid rgba(255, 0, 0, 0.2);
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.12);
-    animation: appear 1s ease;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.35s ease, color 0.35s ease;
+            overflow-x: hidden;
+        }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-.warning {
-    font-size: 75px;
-    display: inline-block;
-    margin-bottom: 20px;
-    animation: floating 2s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.5));
-}
+        button {
+            font-family: inherit;
+        }
 
-@keyframes floating {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-12px) rotate(5deg); }
-}
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            height: 75px;
+            padding: 0 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
 
-h1 {
-    font-size: clamp(24px, 5vw, 34px);
-    line-height: 1.3;
-    margin-bottom: 15px;
-}
+        .logo {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--nav-text);
+        }
 
-h1 span {
-    color: #ff3333;
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-}
+        .logo span {
+            color: var(--primary);
+        }
 
-.description {
-    color: #aaa;
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 30px;
-}
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
 
-.timer-label {
-    color: #888;
-    font-size: 12px;
-    letter-spacing: 3px;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-}
+        .theme-switch {
+            width: 68px;
+            height: 34px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: var(--surface-2);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 14px;
+            transition: 0.3s;
+        }
 
-.timer {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 25px;
-}
+        .switch-circle {
+            position: absolute;
+            left: 3px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--primary);
+            transition: transform 0.3s ease;
+        }
 
-.time-box {
-    background: #171717;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 15px 12px;
-    min-width: 85px;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.08);
-}
+        body.dark-mode .switch-circle {
+            transform: translateX(34px);
+        }
 
-.time-box span {
-    display: block;
-    font-size: 32px;
-    font-weight: bold;
-    color: #ff3838;
-    font-variant-numeric: tabular-nums;
-}
+        /* HERO */
+        .hero {
+            min-height: 590px;
+            padding: 100px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(40, 120, 255, 0.15), transparent 35%),
+                radial-gradient(circle at 85% 80%, rgba(40, 120, 255, 0.12), transparent 35%);
+        }
 
-.time-box small {
-    color: #888;
-    font-size: 10px;
-    letter-spacing: 1px;
-}
+        .hero-content {
+            max-width: 850px;
+            animation: heroEnter 1.2s ease both;
+        }
 
-.status {
-    color: #ff5555;
-    font-size: 13px;
-    margin-bottom: 25px;
-}
+        .hero h1 {
+            font-size: clamp(38px, 7vw, 70px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 22px;
+            letter-spacing: -2px;
+        }
 
-.dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: #ff3333;
-    border-radius: 50%;
-    margin-right: 7px;
-    box-shadow: 0 0 10px red;
-    animation: blink 1s infinite;
-}
+        .hero h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 25px rgba(40, 120, 255, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
 
-@keyframes blink {
-    50% { opacity: 0.2; }
-}
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 32px;
+            color: var(--muted);
+            font-size: 16px;
+            animation: fadeUp 1s 0.3s both;
+        }
 
-.footer {
-    border-top: 1px solid #292929;
-    padding-top: 20px;
-    color: #666;
-    font-size: 11px;
-    letter-spacing: 1px;
-}
+        .hero-btn {
+            display: inline-block;
+            padding: 13px 28px;
+            border-radius: 12px;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(40, 120, 255, 0.25);
+            transition: 0.3s;
+            animation: fadeUp 1s 0.5s both;
+        }
 
-@media(max-width: 380px) {
-    .timer { gap: 7px; }
-    .time-box { min-width: 70px; padding: 12px 7px; }
-    .time-box span { font-size: 25px; }
-}
-</style>
+        .hero-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(40, 120, 255, 0.35);
+        }
+
+        /* GENERAL SECTION */
+        section {
+            padding: 85px 8%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(26px, 4vw, 36px);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        /* GROUP */
+        .group-section {
+            background: var(--surface);
+        }
+
+        .group-box {
+            max-width: 650px;
+            margin: auto;
+            padding: 35px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .group-label {
+            color: var(--muted);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .group-box h3 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .member-list {
+            padding-left: 25px;
+        }
+
+        .member-list li {
+            padding: 7px 0;
+            color: var(--text);
+        }
+
+        /* DEFINITION */
+        .definition-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .definition-image {
+            overflow: hidden;
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .definition-image img {
+            width: 100%;
+            height: 350px;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .definition-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .definition-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .definition-text p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* CARDS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
+        }
+
+        .card,
+        .type-card {
+            background: var(--surface);
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover,
+        .type-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--primary);
+        }
+
+        .number {
+            color: var(--primary);
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .card h3,
+        .type-card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .card p,
+        .type-card p,
+        .type-card li {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .type-card ul {
+            padding-left: 20px;
+            margin-top: 12px;
+        }
+
+        .type-card li {
+            margin: 7px 0;
+        }
+
+        /* SOLUTIONS */
+        .solution-section {
+            background: var(--surface);
+        }
+
+        .solution-list {
+            max-width: 850px;
+            margin: auto;
+            display: grid;
+            gap: 17px;
+        }
+
+        .solution-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 22px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .solution-item:hover {
+            transform: translateX(6px);
+            border-color: var(--primary);
+        }
+
+        .check {
+            min-width: 38px;
+            height: 38px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 11px;
+            font-weight: 700;
+        }
+
+        .solution-item h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .solution-item p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* POSTER */
+        .poster-section {
+            text-align: center;
+        }
+
+        .poster-box {
+            max-width: 750px;
+            margin: auto;
+            padding: 30px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .poster-box img {
+            width: 100%;
+            max-height: 430px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .poster-box h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .poster-box p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* QUOTE */
+        .quote-section {
+            padding: 75px 8%;
+            text-align: center;
+            background: var(--surface-2);
+        }
+
+        .quote-section h2 {
+            color: var(--primary);
+            font-size: clamp(23px, 4vw, 34px);
+            margin-bottom: 15px;
+        }
+
+        .quote-section p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* SUPPORT */
+        .support-section {
+            text-align: center;
+        }
+
+        .support-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .support-section p {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .support-btn {
+            display: inline-block;
+            padding: 13px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 8px 22px rgba(40, 120, 255, 0.2);
+        }
+
+        .support-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-4px);
+        }
+
+        .developer-links {
+            margin-top: 25px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .contact-link {
+            color: var(--primary);
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .link-separator {
+            margin: 0 9px;
+            color: var(--muted);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 35px 8%;
+            text-align: center;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        footer h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 12px;
+            margin: 5px 0;
+        }
+
+        /* SCROLL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            filter: blur(4px);
+            transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* KEYFRAMES */
+        @keyframes heroEnter {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(0.96);
+                filter: blur(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(40, 120, 255, 0.2);
+            }
+            to {
+                text-shadow: 0 0 28px rgba(40, 120, 255, 0.65);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 6%;
+                height: 68px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero {
+                min-height: 520px;
+                padding: 80px 6%;
+            }
+
+            section {
+                padding: 65px 6%;
+            }
+
+            .definition-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .definition-image img {
+                height: 270px;
+            }
+
+            .group-box {
+                padding: 25px;
+            }
+
+            .poster-box {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .solution-item {
+                padding: 17px;
+                gap: 12px;
+            }
+
+            .developer-links {
+                font-size: 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#" class="logo">STOPBULLYING<span>.</span></a>
 
-    <div class="warning">⚠️</div>
+        <div class="nav-right">
+            <button class="theme-switch"
+                    id="themeSwitch"
+                    aria-label="Ganti mode terang atau gelap"
+                    aria-pressed="false">
+                <span class="sun">☀️</span>
+                <span class="moon">🌙</span>
+                <span class="switch-circle"></span>
+            </button>
+        </div>
+    </nav>
 
-    <h1>
-        Mohon Maaf,<br>
-        <span>Website ini sedang maintenance!</span>
-    </h1>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>BERSAMA LAWAN <span>BULLYING!</span></h1>
 
-    <p class="description">
-        Kami sedang melakukan pemeliharaan dan peningkatan
-        sistem website untuk memberikan pengalaman yang
-        lebih baik. Silakan kembali beberapa saat lagi.
-    </p>
+            <p>
+                Setiap siswa berhak merasa aman, dihargai,
+                dan diterima di lingkungan sekolah.
+                Mari ciptakan sekolah tanpa perundungan!
+            </p>
 
-    <div class="timer-label">Perkiraan waktu maintenance</div>
+            <a href="#pengertian" class="hero-btn">
+                Pelajari Sekarang ↓
+            </a>
+        </div>
+    </header>
 
-    <div class="timer">
-        <div class="time-box">
-            <span id="hours">03</span>
-            <small>JAM</small>
+    <!-- ANGGOTA KELOMPOK -->
+    <section class="group-section">
+        <div class="section-heading reveal">
+            <h2>ANGGOTA <span class="highlight">KELOMPOK</span></h2>
+            <p>Kelompok ABC</p>
         </div>
 
-        <div class="time-box">
-            <span id="minutes">00</span>
-            <small>MENIT</small>
+        <div class="group-box reveal">
+            <p class="group-label">Daftar Anggota:</p>
+            <h3>Kelompok ABC</h3>
+
+            <ol class="member-list">
+                <li>Dzaky Faisal Makhrus</li>
+                <li>Radit Setya Putra</li>
+                <li>Shinta Nur Kristia Lilita</li>
+                <li>Keylla Natia Kusuma Indah</li>
+                <li>Mutiara Larasati</li>
+                <li>Hilda Nurul Aeni</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- PENGERTIAN -->
+    <section id="pengertian">
+        <div class="definition-container">
+            <div class="definition-image reveal">
+                <img src="image1.jpg"
+                     alt="Ilustrasi siswa mengalami bullying">
+            </div>
+
+            <div class="definition-text reveal">
+                <h2>Apa Itu <span class="highlight">Bullying?</span></h2>
+
+                <p>
+                    Bullying adalah tindakan menyakiti, mengintimidasi,
+                    atau merendahkan orang lain secara sengaja dan
+                    berulang kali, baik secara fisik maupun verbal,
+                    sehingga korban merasa takut atau tidak nyaman.
+                </p>
+
+                <br>
+
+                <p>
+                    Bullying bukanlah candaan biasa. Perilaku ini
+                    dapat memberikan dampak buruk bagi kehidupan
+                    dan masa depan seseorang.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DAMPAK -->
+    <section id="dampak">
+        <div class="section-heading reveal">
+            <h2>Dampak <span class="highlight">Bullying</span></h2>
+            <p>Perundungan dapat membawa berbagai dampak negatif.</p>
         </div>
 
-        <div class="time-box">
-            <span id="seconds">00</span>
-            <small>DETIK</small>
+        <div class="grid">
+            <div class="card reveal">
+                <div class="number">01</div>
+                <h3>Menurunkan Percaya Diri</h3>
+                <p>Korban merasa minder dan tidak yakin terhadap kemampuan dirinya.</p>
+            </div>
+
+            <div class="card reveal">
+                <div class="number">02</div>
+                <h3>Stres dan Trauma</h3>
+                <p>Korban dapat mengalami tekanan emosional dan ketakutan.</p>
+            </div>
+
+            <div class="card reveal">
+                <div class="number">03</div>
+                <h3>Prestasi Menurun</h3>
+                <p>Konsentrasi dan semangat belajar menjadi terganggu.</p>
+            </div>
+
+            <div class="card reveal">
+                <div class="number">04</div>
+                <h3>Takut ke Sekolah</h3>
+                <p>Korban merasa tidak aman dan enggan mengikuti kegiatan sekolah.</p>
+            </div>
+
+            <div class="card reveal">
+                <div class="number">05</div>
+                <h3>Hubungan Pertemanan Rusak</h3>
+                <p>Bullying dapat menimbulkan permusuhan dan hilangnya kepercayaan.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="status">
-        <span class="dot"></span>
-        Sistem sedang dalam pemeliharaan
-    </div>
+    <!-- JENIS-JENIS BULLYING -->
+    <section id="jenis">
+        <div class="section-heading reveal">
+            <h2>Jenis-Jenis <span class="highlight">Bullying</span></h2>
+            <p>Kenali bentuk-bentuk perundungan dan ciri-cirinya.</p>
+        </div>
 
-    <div class="footer">
-        © 2026 DitzzSolo Code. All Rights Reserved.
-    </div>
+        <div class="grid">
+            <div class="type-card reveal">
+                <h3>01. Bullying Fisik</h3>
+                <p>Perundungan melalui tindakan fisik.</p>
+                <ul>
+                    <li>Memukul atau menendang.</li>
+                    <li>Mendorong teman.</li>
+                    <li>Merusak barang.</li>
+                </ul>
+            </div>
 
-</div>
+            <div class="type-card reveal">
+                <h3>02. Bullying Verbal</h3>
+                <p>Perundungan melalui perkataan.</p>
+                <ul>
+                    <li>Mengejek dan menghina.</li>
+                    <li>Memberikan julukan buruk.</li>
+                    <li>Mengancam teman.</li>
+                </ul>
+            </div>
 
-<script>
-// Timer 3 jam yang berulang
-const duration = 3 * 60 * 60;
-let remaining = duration;
+            <div class="type-card reveal">
+                <h3>03. Bullying Sosial</h3>
+                <p>Perundungan yang merusak hubungan sosial.</p>
+                <ul>
+                    <li>Mengucilkan teman.</li>
+                    <li>Menyebarkan gosip.</li>
+                    <li>Mengajak orang lain menjauhi korban.</li>
+                </ul>
+            </div>
 
-function updateTimer() {
-    const hours = Math.floor(remaining / 3600);
-    const minutes = Math.floor((remaining % 3600) / 60);
-    const seconds = remaining % 60;
+            <div class="type-card reveal">
+                <h3>04. Cyberbullying</h3>
+                <p>Perundungan melalui teknologi digital.</p>
+                <ul>
+                    <li>Menghina di media sosial.</li>
+                    <li>Menyebarkan foto tanpa izin.</li>
+                    <li>Mengirim pesan ancaman.</li>
+                </ul>
+            </div>
 
-    document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
+            <div class="type-card reveal">
+                <h3>05. Bullying Seksual</h3>
+                <p>Perilaku bernuansa seksual yang tidak diinginkan.</p>
+                <ul>
+                    <li>Melontarkan komentar seksual.</li>
+                    <li>Membuat lelucon seksual yang merendahkan.</li>
+                    <li>Melakukan sentuhan yang tidak diinginkan.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-    document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
+    <!-- SOLUSI -->
+    <section id="solusi" class="solution-section">
+        <div class="section-heading reveal">
+            <h2>Cara Penyelesaian <span class="highlight">Bullying</span></h2>
+            <p>Langkah mengatasi tindakan perundungan.</p>
+        </div>
 
-    document.getElementById("seconds").textContent =
-        String(seconds).padStart(2, "0");
+        <div class="solution-list">
+            <div class="solution-item reveal">
+                <div class="check">1</div>
+                <div>
+                    <h3>Laporkan Kejadian</h3>
+                    <p>Laporkan kepada guru BK, wali kelas, atau pihak sekolah.</p>
+                </div>
+            </div>
 
-    if (remaining <= 0) {
-        remaining = duration;
-    } else {
-        remaining--;
-    }
-}
+            <div class="solution-item reveal">
+                <div class="check">2</div>
+                <div>
+                    <h3>Dukung Korban</h3>
+                    <p>Berikan perhatian dan dukungan kepada korban.</p>
+                </div>
+            </div>
 
-updateTimer();
-setInterval(updateTimer, 1000);
-</script>
+            <div class="solution-item reveal">
+                <div class="check">3</div>
+                <div>
+                    <h3>Tegur dengan Aman</h3>
+                    <p>Tegur pelaku jika situasinya aman dan mintalah bantuan orang dewasa.</p>
+                </div>
+            </div>
+
+            <div class="solution-item reveal">
+                <div class="check">4</div>
+                <div>
+                    <h3>Pembinaan dan Sanksi</h3>
+                    <p>Berikan pembinaan dan sanksi sesuai aturan sekolah.</p>
+                </div>
+            </div>
+
+            <div class="solution-item reveal">
+                <div class="check">5</div>
+                <div>
+                    <h3>Sosialisasi Bahaya Bullying</h3>
+                    <p>Adakan edukasi untuk meningkatkan kesadaran siswa.</p>
+                </div>
+            </div>
+
+            <div class="solution-item reveal">
+                <div class="check">6</div>
+                <div>
+                    <h3>Ciptakan Sekolah yang Aman</h3>
+                    <p>Bangun lingkungan sekolah yang nyaman dan saling menghargai.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POSTER -->
+    <section class="poster-section">
+        <div class="section-heading reveal">
+            <h2>STOP <span class="highlight">BULLYING!</span></h2>
+            <p>Jadilah teman yang baik, bukan alasan seseorang merasa takut datang ke sekolah.</p>
+        </div>
+
+        <div class="poster-box reveal">
+            <img src="image2.jpg" alt="Poster kampanye Stop Bullying">
+
+            <h2>Berani Peduli, Berani Melindungi!</h2>
+
+            <p>
+                Jangan diam ketika melihat perundungan.
+                Bantu korban, laporkan kejadian, dan jadilah
+                bagian dari perubahan.
+            </p>
+        </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="quote-section">
+        <h2 class="reveal">"Berbeda Bukan Berarti Harus Dibeda-bedakan."</h2>
+
+        <p class="reveal">
+            Hargai setiap perbedaan, jaga persahabatan,
+            dan sebarkan kebaikan.
+            Mari ciptakan sekolah bebas bullying!
+        </p>
+    </section>
+
+    <!-- DUKUNG DEVELOPER -->
+    <section class="support-section">
+        <div class="reveal">
+            <h2>Dukung Pengembangan <span class="highlight">Website</span></h2>
+
+            <p>
+                Terima kasih sudah membaca edukasi ini.
+                Dukung developer agar terus berkarya dan membuat
+                hal-hal bermanfaat.
+            </p>
+
+            <a href="https://dukung-gua.vercel.app"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="support-btn">
+                ♥ Dukung Developer
+            </a>
+
+            <div class="developer-links">
+                <a href="https://kontak-radit.vercel.app"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="contact-link">Kontak Developer</a>
+
+                <span class="link-separator">|</span>
+
+                <a href="https://github.com/ditzzajaa/artikel-kelompok-abc"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="contact-link">Demo Github</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>STOP BULLYING<span class="highlight">.</span></h3>
+
+        <p>Edukasi dan Kesadaran Anti-Perundungan di Sekolah</p>
+        <p>Mulai dari diri sendiri, mulai dari sekarang.</p>
+        <p>© 2026 | Kampanye Sekolah Bebas Bullying</p>
+    </footer>
+
+    <script>
+        // THEME SWITCH
+        const themeSwitch = document.getElementById("themeSwitch");
+        const body = document.body;
+
+        // Memuat tema yang tersimpan
+        const savedTheme = localStorage.getItem("bullying-theme");
+
+        if (savedTheme === "dark") {
+            body.classList.add("dark-mode");
+            themeSwitch.setAttribute("aria-pressed", "true");
+        } else {
+            body.classList.remove("dark-mode");
+            themeSwitch.setAttribute("aria-pressed", "false");
+        }
+
+        // Mengubah tema
+        themeSwitch.addEventListener("click", () => {
+            body.classList.add("theme-changing");
+
+            body.classList.toggle("dark-mode");
+
+            const isDark = body.classList.contains("dark-mode");
+
+            localStorage.setItem(
+                "bullying-theme",
+                isDark ? "dark" : "light"
+            );
+
+            themeSwitch.setAttribute("aria-pressed", String(isDark));
+
+            setTimeout(() => {
+                body.classList.remove("theme-changing");
+            }, 350);
+        });
+
+        // ANIMASI SAAT SCROLL
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+
+        revealElements.forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
 
 </body>
-  </html>
-  
+</html>
