@@ -151,14 +151,19 @@
         }
 
         @keyframes loaderPulse {
-            50% { transform: scale(1.07); opacity: .7; }
+            50% {
+                transform: scale(1.07);
+                opacity: .7;
+            }
         }
 
         @keyframes loadingProgress {
             to { width: 100%; }
         }
 
-        /* NAVBAR */
+        /* =========================
+           NAVBAR
+        ========================= */
 
         nav {
             width: 100%;
@@ -190,14 +195,19 @@
         .nav-right {
             display: flex;
             align-items: center;
+            gap: 12px;
         }
 
-        .theme-switch {
+        /* THEME SWITCH */
+
+        .theme-switch,
+        .music-switch {
             width: 68px;
             height: 34px;
             border: 1px solid var(--border);
             border-radius: 30px;
             background: var(--surface-2);
+            color: var(--text);
             cursor: pointer;
             position: relative;
             display: flex;
@@ -207,21 +217,35 @@
             transition: .3s;
         }
 
-        .switch-circle {
+        .theme-switch:hover,
+        .music-switch:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 12px var(--glow);
+        }
+
+        .switch-circle,
+        .music-circle {
             position: absolute;
             left: 3px;
             width: 26px;
             height: 26px;
             border-radius: 50%;
             background: var(--primary);
-            transition: transform .3s;
+            transition: transform .3s ease;
+            pointer-events: none;
         }
 
         body.dark-mode .switch-circle {
             transform: translateX(34px);
         }
 
-        /* HERO */
+        .music-switch.active .music-circle {
+            transform: translateX(34px);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
             min-height: 590px;
@@ -264,7 +288,9 @@
             animation: fadeUp 1s .3s both;
         }
 
-        /* BUTTONS */
+        /* =========================
+           BUTTON ANIMATION
+        ========================= */
 
         .hero-buttons {
             display: flex;
@@ -286,7 +312,8 @@
             color: white;
             font-weight: 600;
             box-shadow: 0 8px 25px rgba(40,120,255,.25);
-            transition: transform .3s ease, background .3s ease,
+            transition: transform .3s ease,
+                        background .3s ease,
                         box-shadow .3s ease;
             animation: fadeUp 1s .5s both;
         }
@@ -324,7 +351,8 @@
 
         .hero-btn:active,
         .support-btn:active,
-        .theme-switch:active {
+        .theme-switch:active,
+        .music-switch:active {
             transform: scale(.94);
         }
 
@@ -346,7 +374,9 @@
             }
         }
 
-        /* GENERAL SECTION */
+        /* =========================
+           GENERAL SECTION
+        ========================= */
 
         section {
             padding: 85px 8%;
@@ -372,7 +402,9 @@
             color: var(--primary);
         }
 
-        /* GROUP */
+        /* =========================
+           GROUP
+        ========================= */
 
         .group-section {
             background: var(--surface);
@@ -409,7 +441,9 @@
             color: var(--text);
         }
 
-        /* DEFINITION */
+        /* =========================
+           DEFINITION
+        ========================= */
 
         .definition-container {
             display: grid;
@@ -447,7 +481,9 @@
             font-size: 14px;
         }
 
-        /* CARDS */
+        /* =========================
+           CARDS
+        ========================= */
 
         .grid {
             display: grid;
@@ -464,7 +500,38 @@
             box-shadow: var(--shadow);
         }
 
-        /* CARD HOVER */
+        .card h3,
+        .type-card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .number {
+            color: var(--primary);
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .card p,
+        .type-card p,
+        .type-card li {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .type-card ul {
+            padding-left: 20px;
+            margin-top: 12px;
+        }
+
+        .type-card li {
+            margin: 7px 0;
+        }
+
+        /* =========================
+           CARD HOVER + GLOW
+        ========================= */
 
         .card,
         .type-card,
@@ -530,35 +597,6 @@
             opacity: 1;
         }
 
-        .number {
-            color: var(--primary);
-            font-size: 30px;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .card h3,
-        .type-card h3 {
-            font-size: 17px;
-            margin-bottom: 10px;
-        }
-
-        .card p,
-        .type-card p,
-        .type-card li {
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .type-card ul {
-            padding-left: 20px;
-            margin-top: 12px;
-        }
-
-        .type-card li {
-            margin: 7px 0;
-        }
-
         /* MOUSE GLOW */
 
         .card,
@@ -609,7 +647,9 @@
             z-index: 1;
         }
 
-        /* SOLUTIONS */
+        /* =========================
+           SOLUTIONS
+        ========================= */
 
         .solution-section {
             background: var(--surface);
@@ -654,7 +694,9 @@
             font-size: 13px;
         }
 
-        /* POSTER */
+        /* =========================
+           POSTER
+        ========================= */
 
         .poster-section {
             text-align: center;
@@ -688,7 +730,9 @@
             font-size: 14px;
         }
 
-        /* QUOTE */
+        /* =========================
+           QUOTE
+        ========================= */
 
         .quote-section {
             padding: 75px 8%;
@@ -707,7 +751,9 @@
             font-size: 14px;
         }
 
-        /* SUPPORT */
+        /* =========================
+           SUPPORT
+        ========================= */
 
         .support-section {
             text-align: center;
@@ -751,7 +797,9 @@
             color: var(--muted);
         }
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             padding: 35px 8%;
@@ -772,7 +820,9 @@
             margin: 5px 0;
         }
 
-        /* SCROLL ANIMATION */
+        /* =========================
+           SCROLL ANIMATION
+        ========================= */
 
         .reveal {
             opacity: 0;
@@ -789,7 +839,9 @@
             filter: blur(0);
         }
 
-        /* KEYFRAMES */
+        /* =========================
+           KEYFRAMES
+        ========================= */
 
         @keyframes heroEnter {
             from {
@@ -824,7 +876,9 @@
             }
         }
 
-        /* RESPONSIVE */
+        /* =========================
+           RESPONSIVE
+        ========================= */
 
         @media (max-width:768px) {
             nav {
@@ -864,6 +918,27 @@
         }
 
         @media (max-width:420px) {
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-right {
+                gap: 8px;
+            }
+
+            .theme-switch,
+            .music-switch {
+                width: 60px;
+            }
+
+            .music-switch.active .music-circle {
+                transform: translateX(26px);
+            }
+
+            body.dark-mode .switch-circle {
+                transform: translateX(26px);
+            }
+
             .hero h1 {
                 letter-spacing: -1px;
             }
@@ -891,7 +966,9 @@
             }
         }
 
-        /* PERANGKAT TANPA MOUSE */
+        /* =========================
+           HOVER DINONAKTIFKAN DI HP
+        ========================= */
 
         @media (hover:none) {
             .card:hover,
@@ -924,7 +1001,9 @@
             }
         }
 
-        /* AKSESIBILITAS */
+        /* =========================
+           REDUCED MOTION
+        ========================= */
 
         @media (prefers-reduced-motion:reduce) {
             *,
@@ -941,20 +1020,24 @@
                 transform: none;
                 filter: none;
             }
-
-            #loader {
-                transition: none;
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- LOADING SCREEN -->
+    <!-- =========================
+         LOADING SCREEN
+    ========================== -->
+
     <div id="loader" role="status" aria-label="Memuat website">
-        <div class="loader-logo">STOPBULLYING<span>.</span></div>
-        <p class="loader-subtitle">Menyiapkan halaman edukasi...</p>
+        <div class="loader-logo">
+            STOPBULLYING<span>.</span>
+        </div>
+
+        <p class="loader-subtitle">
+            Menyiapkan halaman edukasi...
+        </p>
 
         <div class="loader-spinner"></div>
 
@@ -965,26 +1048,56 @@
         <div class="loader-percent" id="loaderPercent">0%</div>
     </div>
 
-    <!-- NAVBAR -->
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
     <nav>
-        <a href="#" class="logo">STOPBULLYING<span>.</span></a>
+        <a href="#" class="logo">
+            STOPBULLYING<span>.</span>
+        </a>
 
         <div class="nav-right">
+
+            <!-- MUSIC SWITCH -->
+            <button class="music-switch"
+                    id="musicSwitch"
+                    aria-label="Nyalakan musik"
+                    aria-pressed="false"
+                    title="Musik OFF">
+
+                <span>🔇</span>
+                <span>🔊</span>
+                <span class="music-circle"></span>
+            </button>
+
+            <!-- AUDIO -->
+            <audio id="bgMusic" src="sfx.mp3" loop preload="auto"></audio>
+
+            <!-- DARK MODE SWITCH -->
             <button class="theme-switch"
                     id="themeSwitch"
                     aria-label="Ganti mode terang atau gelap"
                     aria-pressed="false">
+
                 <span class="sun">☀️</span>
                 <span class="moon">🌙</span>
                 <span class="switch-circle"></span>
             </button>
+
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- =========================
+         HERO
+    ========================== -->
+
     <header class="hero">
         <div class="hero-content">
-            <h1>BERSAMA LAWAN <span>BULLYING!</span></h1>
+
+            <h1>
+                BERSAMA LAWAN <span>BULLYING!</span>
+            </h1>
 
             <p>
                 Setiap siswa berhak merasa aman, dihargai,
@@ -993,6 +1106,7 @@
             </p>
 
             <div class="hero-buttons">
+
                 <a href="#pengertian" class="hero-btn">
                     Pelajari Sekarang ↓
                 </a>
@@ -1003,19 +1117,28 @@
                    class="hero-btn">
                     Kuis Anti-Bullying
                 </a>
+
             </div>
         </div>
     </header>
 
-    <!-- ANGGOTA KELOMPOK -->
+    <!-- =========================
+         ANGGOTA KELOMPOK
+    ========================== -->
+
     <section class="group-section">
+
         <div class="section-heading reveal">
-            <h2>ANGGOTA <span class="highlight">KELOMPOK</span></h2>
+            <h2>
+                ANGGOTA <span class="highlight">KELOMPOK</span>
+            </h2>
             <p>Kelompok ABC</p>
         </div>
 
         <div class="group-box reveal">
+
             <p class="group-label">Daftar Anggota:</p>
+
             <h3>Kelompok ABC</h3>
 
             <ol class="member-list">
@@ -1026,18 +1149,28 @@
                 <li>Mutiara Larasati</li>
                 <li>Hilda Nurul Aeni</li>
             </ol>
+
         </div>
     </section>
 
-    <!-- PENGERTIAN -->
+    <!-- =========================
+         PENGERTIAN
+    ========================== -->
+
     <section id="pengertian">
+
         <div class="definition-container">
+
             <div class="definition-image reveal">
-                <img src="image1.jpg" alt="Ilustrasi siswa mengalami bullying">
+                <img src="image1.jpg"
+                     alt="Ilustrasi siswa mengalami bullying">
             </div>
 
             <div class="definition-text reveal">
-                <h2>Apa Itu <span class="highlight">Bullying?</span></h2>
+
+                <h2>
+                    Apa Itu <span class="highlight">Bullying?</span>
+                </h2>
 
                 <p>
                     Bullying adalah tindakan menyakiti, mengintimidasi,
@@ -1053,61 +1186,94 @@
                     dapat memberikan dampak buruk bagi kehidupan
                     dan masa depan seseorang.
                 </p>
+
             </div>
         </div>
     </section>
 
-    <!-- DAMPAK -->
+    <!-- =========================
+         DAMPAK
+    ========================== -->
+
     <section id="dampak">
+
         <div class="section-heading reveal">
-            <h2>Dampak <span class="highlight">Bullying</span></h2>
-            <p>Perundungan dapat membawa berbagai dampak negatif.</p>
+            <h2>
+                Dampak <span class="highlight">Bullying</span>
+            </h2>
+
+            <p>
+                Perundungan dapat membawa berbagai dampak negatif.
+            </p>
         </div>
 
         <div class="grid">
+
             <div class="card reveal">
                 <div class="number">01</div>
                 <h3>Menurunkan Percaya Diri</h3>
-                <p>Korban merasa minder dan tidak yakin terhadap kemampuan dirinya.</p>
+                <p>
+                    Korban merasa minder dan tidak yakin terhadap kemampuan dirinya.
+                </p>
             </div>
 
             <div class="card reveal">
                 <div class="number">02</div>
                 <h3>Stres dan Trauma</h3>
-                <p>Korban dapat mengalami tekanan emosional dan ketakutan.</p>
+                <p>
+                    Korban dapat mengalami tekanan emosional dan ketakutan.
+                </p>
             </div>
 
             <div class="card reveal">
                 <div class="number">03</div>
                 <h3>Prestasi Menurun</h3>
-                <p>Konsentrasi dan semangat belajar menjadi terganggu.</p>
+                <p>
+                    Konsentrasi dan semangat belajar menjadi terganggu.
+                </p>
             </div>
 
             <div class="card reveal">
                 <div class="number">04</div>
                 <h3>Takut ke Sekolah</h3>
-                <p>Korban merasa tidak aman dan enggan mengikuti kegiatan sekolah.</p>
+                <p>
+                    Korban merasa tidak aman dan enggan mengikuti kegiatan sekolah.
+                </p>
             </div>
 
             <div class="card reveal">
                 <div class="number">05</div>
                 <h3>Hubungan Pertemanan Rusak</h3>
-                <p>Bullying dapat menimbulkan permusuhan dan hilangnya kepercayaan.</p>
+                <p>
+                    Bullying dapat menimbulkan permusuhan dan hilangnya kepercayaan.
+                </p>
             </div>
+
         </div>
     </section>
 
-    <!-- JENIS-JENIS BULLYING -->
+    <!-- =========================
+         JENIS-JENIS BULLYING
+    ========================== -->
+
     <section id="jenis">
+
         <div class="section-heading reveal">
-            <h2>Jenis-Jenis <span class="highlight">Bullying</span></h2>
-            <p>Kenali bentuk-bentuk perundungan dan ciri-cirinya.</p>
+            <h2>
+                Jenis-Jenis <span class="highlight">Bullying</span>
+            </h2>
+
+            <p>
+                Kenali bentuk-bentuk perundungan dan ciri-cirinya.
+            </p>
         </div>
 
         <div class="grid">
+
             <div class="type-card reveal">
                 <h3>01. Bullying Fisik</h3>
                 <p>Perundungan melalui tindakan fisik.</p>
+
                 <ul>
                     <li>Memukul atau menendang.</li>
                     <li>Mendorong teman.</li>
@@ -1118,6 +1284,7 @@
             <div class="type-card reveal">
                 <h3>02. Bullying Verbal</h3>
                 <p>Perundungan melalui perkataan.</p>
+
                 <ul>
                     <li>Mengejek dan menghina.</li>
                     <li>Memberikan julukan buruk.</li>
@@ -1128,6 +1295,7 @@
             <div class="type-card reveal">
                 <h3>03. Bullying Sosial</h3>
                 <p>Perundungan yang merusak hubungan sosial.</p>
+
                 <ul>
                     <li>Mengucilkan teman.</li>
                     <li>Menyebarkan gosip.</li>
@@ -1138,6 +1306,7 @@
             <div class="type-card reveal">
                 <h3>04. Cyberbullying</h3>
                 <p>Perundungan melalui teknologi digital.</p>
+
                 <ul>
                     <li>Menghina di media sosial.</li>
                     <li>Menyebarkan foto tanpa izin.</li>
@@ -1148,28 +1317,42 @@
             <div class="type-card reveal">
                 <h3>05. Bullying Seksual</h3>
                 <p>Perilaku bernuansa seksual yang tidak diinginkan.</p>
+
                 <ul>
                     <li>Melontarkan komentar seksual.</li>
                     <li>Membuat lelucon seksual yang merendahkan.</li>
                     <li>Melakukan sentuhan yang tidak diinginkan.</li>
                 </ul>
             </div>
+
         </div>
     </section>
 
-    <!-- SOLUSI -->
+    <!-- =========================
+         SOLUSI
+    ========================== -->
+
     <section id="solusi" class="solution-section">
+
         <div class="section-heading reveal">
-            <h2>Cara Penyelesaian <span class="highlight">Bullying</span></h2>
-            <p>Langkah mengatasi tindakan perundungan.</p>
+            <h2>
+                Cara Penyelesaian <span class="highlight">Bullying</span>
+            </h2>
+
+            <p>
+                Langkah mengatasi tindakan perundungan.
+            </p>
         </div>
 
         <div class="solution-list">
+
             <div class="solution-item reveal">
                 <div class="check">1</div>
                 <div>
                     <h3>Laporkan Kejadian</h3>
-                    <p>Laporkan kepada guru BK, wali kelas, atau pihak sekolah.</p>
+                    <p>
+                        Laporkan kepada guru BK, wali kelas, atau pihak sekolah.
+                    </p>
                 </div>
             </div>
 
@@ -1177,7 +1360,9 @@
                 <div class="check">2</div>
                 <div>
                     <h3>Dukung Korban</h3>
-                    <p>Berikan perhatian dan dukungan kepada korban.</p>
+                    <p>
+                        Berikan perhatian dan dukungan kepada korban.
+                    </p>
                 </div>
             </div>
 
@@ -1185,7 +1370,9 @@
                 <div class="check">3</div>
                 <div>
                     <h3>Tegur dengan Aman</h3>
-                    <p>Tegur pelaku jika situasinya aman dan mintalah bantuan orang dewasa.</p>
+                    <p>
+                        Tegur pelaku jika situasinya aman dan mintalah bantuan orang dewasa.
+                    </p>
                 </div>
             </div>
 
@@ -1193,7 +1380,9 @@
                 <div class="check">4</div>
                 <div>
                     <h3>Pembinaan dan Sanksi</h3>
-                    <p>Berikan pembinaan dan sanksi sesuai aturan sekolah.</p>
+                    <p>
+                        Berikan pembinaan dan sanksi sesuai aturan sekolah.
+                    </p>
                 </div>
             </div>
 
@@ -1201,7 +1390,9 @@
                 <div class="check">5</div>
                 <div>
                     <h3>Sosialisasi Bahaya Bullying</h3>
-                    <p>Adakan edukasi untuk meningkatkan kesadaran siswa.</p>
+                    <p>
+                        Adakan edukasi untuk meningkatkan kesadaran siswa.
+                    </p>
                 </div>
             </div>
 
@@ -1209,21 +1400,35 @@
                 <div class="check">6</div>
                 <div>
                     <h3>Ciptakan Sekolah yang Aman</h3>
-                    <p>Bangun lingkungan sekolah yang nyaman dan saling menghargai.</p>
+                    <p>
+                        Bangun lingkungan sekolah yang nyaman dan saling menghargai.
+                    </p>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- POSTER -->
+    <!-- =========================
+         POSTER
+    ========================== -->
+
     <section class="poster-section">
+
         <div class="section-heading reveal">
-            <h2>STOP <span class="highlight">BULLYING!</span></h2>
-            <p>Jadilah teman yang baik, bukan alasan seseorang merasa takut datang ke sekolah.</p>
+            <h2>
+                STOP <span class="highlight">BULLYING!</span>
+            </h2>
+
+            <p>
+                Jadilah teman yang baik, bukan alasan seseorang merasa takut datang ke sekolah.
+            </p>
         </div>
 
         <div class="poster-box reveal">
-            <img src="image2.jpg" alt="Poster kampanye Stop Bullying">
+
+            <img src="image2.jpg"
+                 alt="Poster kampanye Stop Bullying">
 
             <h2>Berani Peduli, Berani Melindungi!</h2>
 
@@ -1232,24 +1437,39 @@
                 Bantu korban, laporkan kejadian, dan jadilah
                 bagian dari perubahan.
             </p>
+
         </div>
     </section>
 
-    <!-- QUOTE -->
+    <!-- =========================
+         QUOTE
+    ========================== -->
+
     <section class="quote-section">
-        <h2 class="reveal">"Berbeda Bukan Berarti Harus Dibeda-bedakan."</h2>
+
+        <h2 class="reveal">
+            "Berbeda Bukan Berarti Harus Dibeda-bedakan."
+        </h2>
 
         <p class="reveal">
             Hargai setiap perbedaan, jaga persahabatan,
             dan sebarkan kebaikan.
             Mari ciptakan sekolah bebas bullying!
         </p>
+
     </section>
 
-    <!-- DUKUNG DEVELOPER -->
+    <!-- =========================
+         DUKUNG DEVELOPER
+    ========================== -->
+
     <section class="support-section">
+
         <div class="reveal">
-            <h2>Dukung Pengembangan <span class="highlight">Website</span></h2>
+
+            <h2>
+                Dukung Pengembangan <span class="highlight">Website</span>
+            </h2>
 
             <p>
                 Terima kasih sudah membaca edukasi ini.
@@ -1265,31 +1485,57 @@
             </a>
 
             <div class="developer-links">
+
                 <a href="https://kontak-radit.vercel.app"
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="contact-link">Kontak Developer</a>
+                   class="contact-link">
+                    Kontak Developer
+                </a>
 
                 <span class="link-separator">|</span>
 
                 <a href="https://github.com/ditzzajaa/artikel-kelompok-abc"
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="contact-link">Demo Github</a>
+                   class="contact-link">
+                    Demo Github
+                </a>
+
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <h3>STOP BULLYING<span class="highlight">.</span></h3>
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
-        <p>Edukasi dan Kesadaran Anti-Perundungan di Sekolah</p>
-        <p>Mulai dari diri sendiri, mulai dari sekarang.</p>
-        <p>© 2026 | Kampanye Sekolah Bebas Bullying</p>
+    <footer>
+
+        <h3>
+            STOP BULLYING<span class="highlight">.</span>
+        </h3>
+
+        <p>
+            Edukasi dan Kesadaran Anti-Perundungan di Sekolah
+        </p>
+
+        <p>
+            Mulai dari diri sendiri, mulai dari sekarang.
+        </p>
+
+        <p>
+            © 2026 | Kampanye Sekolah Bebas Bullying
+        </p>
+
     </footer>
 
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
     <script>
+
         // =========================
         // FAKE LOADING 5 DETIK
         // =========================
@@ -1301,12 +1547,17 @@
         const alreadyLoaded = sessionStorage.getItem("bullying-loaded");
 
         if (alreadyLoaded) {
+
             loader.remove();
+
         } else {
+
             const startTime = Date.now();
 
             const loadingInterval = setInterval(() => {
+
                 const elapsed = Date.now() - startTime;
+
                 const percent = Math.min(
                     100,
                     Math.floor((elapsed / LOADING_TIME) * 100)
@@ -1315,15 +1566,19 @@
                 loaderPercent.textContent = percent + "%";
 
                 if (elapsed >= LOADING_TIME) {
+
                     clearInterval(loadingInterval);
 
                     loader.classList.add("hide");
+
                     sessionStorage.setItem("bullying-loaded", "true");
 
                     setTimeout(() => {
                         loader.remove();
                     }, 750);
+
                 }
+
             }, 40);
         }
 
@@ -1337,14 +1592,21 @@
         const savedTheme = localStorage.getItem("bullying-theme");
 
         if (savedTheme === "dark") {
+
             body.classList.add("dark-mode");
+
             themeSwitch.setAttribute("aria-pressed", "true");
+
         } else {
+
             body.classList.remove("dark-mode");
+
             themeSwitch.setAttribute("aria-pressed", "false");
+
         }
 
         themeSwitch.addEventListener("click", () => {
+
             body.classList.toggle("dark-mode");
 
             const isDark = body.classList.contains("dark-mode");
@@ -1354,7 +1616,106 @@
                 isDark ? "dark" : "light"
             );
 
-            themeSwitch.setAttribute("aria-pressed", String(isDark));
+            themeSwitch.setAttribute(
+                "aria-pressed",
+                String(isDark)
+            );
+
+        });
+
+        // =========================
+        // MUSIC TOGGLE
+        // =========================
+
+        const musicSwitch = document.getElementById("musicSwitch");
+        const bgMusic = document.getElementById("bgMusic");
+
+        // Volume 65%
+        bgMusic.volume = 0.65;
+
+        // Musik awal OFF
+        let musicPlaying = false;
+
+        musicSwitch.addEventListener("click", async () => {
+
+            if (!musicPlaying) {
+
+                try {
+
+                    bgMusic.volume = 0.65;
+
+                    await bgMusic.play();
+
+                    musicPlaying = true;
+
+                    musicSwitch.classList.add("active");
+
+                    musicSwitch.setAttribute(
+                        "aria-pressed",
+                        "true"
+                    );
+
+                    musicSwitch.setAttribute(
+                        "aria-label",
+                        "Matikan musik"
+                    );
+
+                    musicSwitch.title = "Musik ON";
+
+                } catch (error) {
+
+                    console.error(
+                        "Musik gagal diputar:",
+                        error
+                    );
+
+                    musicSwitch.title = "Musik gagal diputar";
+
+                }
+
+            } else {
+
+                bgMusic.pause();
+
+                musicPlaying = false;
+
+                musicSwitch.classList.remove("active");
+
+                musicSwitch.setAttribute(
+                    "aria-pressed",
+                    "false"
+                );
+
+                musicSwitch.setAttribute(
+                    "aria-label",
+                    "Nyalakan musik"
+                );
+
+                musicSwitch.title = "Musik OFF";
+
+            }
+
+        });
+
+        // Jika file audio mengalami error
+        bgMusic.addEventListener("error", () => {
+
+            musicPlaying = false;
+
+            musicSwitch.classList.remove("active");
+
+            musicSwitch.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+
+            musicSwitch.setAttribute(
+                "aria-label",
+                "Nyalakan musik"
+            );
+
+            musicSwitch.title = "Musik tidak tersedia";
+
         });
 
         // =========================
@@ -1364,12 +1725,19 @@
         const revealElements = document.querySelectorAll(".reveal");
 
         const observer = new IntersectionObserver((entries) => {
+
             entries.forEach((entry) => {
+
                 if (entry.isIntersecting) {
+
                     entry.target.classList.add("active");
+
                     observer.unobserve(entry.target);
+
                 }
+
             });
+
         }, {
             threshold: 0.12
         });
@@ -1387,20 +1755,28 @@
         );
 
         glowBlocks.forEach((block) => {
+
             block.addEventListener("mousemove", (event) => {
+
                 const rect = block.getBoundingClientRect();
 
                 const x = event.clientX - rect.left;
                 const y = event.clientY - rect.top;
 
                 block.style.setProperty("--mouse-x", `${x}px`);
+
                 block.style.setProperty("--mouse-y", `${y}px`);
+
             });
 
             block.addEventListener("mouseleave", () => {
+
                 block.style.removeProperty("--mouse-x");
+
                 block.style.removeProperty("--mouse-y");
+
             });
+
         });
 
         // =========================
@@ -1408,18 +1784,26 @@
         // =========================
 
         const animatedButtons = document.querySelectorAll(
-            ".hero-btn, .support-btn, .theme-switch"
+            ".hero-btn, .support-btn, .theme-switch, .music-switch"
         );
 
         animatedButtons.forEach((button) => {
+
             button.addEventListener("click", (event) => {
+
                 const rect = button.getBoundingClientRect();
 
                 const ripple = document.createElement("span");
-                const size = Math.max(rect.width, rect.height);
+
+                const size = Math.max(
+                    rect.width,
+                    rect.height
+                );
 
                 ripple.className = "ripple";
+
                 ripple.style.width = size + "px";
+
                 ripple.style.height = size + "px";
 
                 ripple.style.left =
@@ -1433,8 +1817,11 @@
                 setTimeout(() => {
                     ripple.remove();
                 }, 650);
+
             });
+
         });
+
     </script>
 
 </body>
