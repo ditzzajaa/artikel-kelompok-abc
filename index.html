@@ -287,12 +287,12 @@
             border-right: 3px solid var(--primary);
             padding-right: 5px;
             white-space: nowrap;
-            animation: typingCursor .7s infinite;
+            animation: typingCursor 500ms steps(1) infinite;
         }
 
         @keyframes typingCursor {
             50% {
-                border-color: transparent;
+                border-right-color: transparent;
             }
         }
 
@@ -1891,7 +1891,7 @@
                     isDeleting = true;
 
                     // Menunggu 7 detik sebelum berganti kata
-                    setTimeout(typeEffect, 7000);
+                    setTimeout(typeEffect, 6000);
                     return;
                 }
 
@@ -1900,7 +1900,7 @@
         }
 
         // Mulai animasi setelah 7 detik
-        setTimeout(typeEffect, 7000);
+        setTimeout(typeEffect, 6000);
 
     </script>
 
