@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -278,6 +277,23 @@
             color: var(--primary);
             text-shadow: 0 0 25px rgba(40,120,255,.3);
             animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        /* TYPEWRITER ANIMATION */
+
+        .typing-text {
+            display: inline-block;
+            min-width: 0;
+            border-right: 3px solid var(--primary);
+            padding-right: 5px;
+            white-space: nowrap;
+            animation: typingCursor .7s infinite;
+        }
+
+        @keyframes typingCursor {
+            50% {
+                border-color: transparent;
+            }
         }
 
         .hero p {
@@ -1090,13 +1106,14 @@
 
     <!-- =========================
          HERO
-    ========================== -->
+    ========================= -->
 
     <header class="hero">
         <div class="hero-content">
 
             <h1>
-                BERSAMA LAWAN <span>BULLYING!</span>
+                BERSAMA LAWAN
+                <span id="typingText" class="typing-text">BULLYING!</span>
             </h1>
 
             <p>
@@ -1124,7 +1141,7 @@
 
     <!-- =========================
          ANGGOTA KELOMPOK
-    ========================== -->
+    ========================= -->
 
     <section class="group-section">
 
@@ -1155,7 +1172,7 @@
 
     <!-- =========================
          PENGERTIAN
-    ========================== -->
+    ========================= -->
 
     <section id="pengertian">
 
@@ -1193,7 +1210,7 @@
 
     <!-- =========================
          DAMPAK
-    ========================== -->
+    ========================= -->
 
     <section id="dampak">
 
@@ -1254,7 +1271,7 @@
 
     <!-- =========================
          JENIS-JENIS BULLYING
-    ========================== -->
+    ========================= -->
 
     <section id="jenis">
 
@@ -1330,7 +1347,7 @@
 
     <!-- =========================
          SOLUSI
-    ========================== -->
+    ========================= -->
 
     <section id="solusi" class="solution-section">
 
@@ -1411,7 +1428,7 @@
 
     <!-- =========================
          POSTER
-    ========================== -->
+    ========================= -->
 
     <section class="poster-section">
 
@@ -1443,7 +1460,7 @@
 
     <!-- =========================
          QUOTE
-    ========================== -->
+    ========================= -->
 
     <section class="quote-section">
 
@@ -1461,7 +1478,7 @@
 
     <!-- =========================
          DUKUNG DEVELOPER
-    ========================== -->
+    ========================= -->
 
     <section class="support-section">
 
@@ -1508,7 +1525,7 @@
 
     <!-- =========================
          FOOTER
-    ========================== -->
+    ========================= -->
 
     <footer>
 
@@ -1532,7 +1549,7 @@
 
     <!-- =========================
          JAVASCRIPT
-    ========================== -->
+    ========================= -->
 
     <script>
 
@@ -1821,6 +1838,69 @@
             });
 
         });
+
+        // =========================
+        // TYPEWRITER TEXT ANIMATION
+        // =========================
+
+        const typingText = document.getElementById("typingText");
+
+        const typingWords = [
+            "BULLYING!",
+            "PERUNDUNGAN!"
+        ];
+
+        let wordIndex = 0;
+        let charIndex = typingWords[0].length;
+        let isDeleting = true;
+
+        function typeEffect() {
+
+            const currentWord = typingWords[wordIndex];
+
+            if (isDeleting) {
+
+                charIndex--;
+
+                typingText.textContent =
+                    currentWord.substring(0, charIndex);
+
+                if (charIndex <= 0) {
+
+                    isDeleting = false;
+
+                    wordIndex = (wordIndex + 1) % typingWords.length;
+
+                    setTimeout(typeEffect, 500);
+                    return;
+                }
+
+                setTimeout(typeEffect, 80);
+
+            } else {
+
+                const nextWord = typingWords[wordIndex];
+
+                charIndex++;
+
+                typingText.textContent =
+                    nextWord.substring(0, charIndex);
+
+                if (charIndex >= nextWord.length) {
+
+                    isDeleting = true;
+
+                    // Menunggu 7 detik sebelum berganti kata
+                    setTimeout(typeEffect, 7000);
+                    return;
+                }
+
+                setTimeout(typeEffect, 110);
+            }
+        }
+
+        // Mulai animasi setelah 7 detik
+        setTimeout(typeEffect, 7000);
 
     </script>
 
